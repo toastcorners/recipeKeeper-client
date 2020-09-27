@@ -7,13 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const select = document.querySelector('#diet-names')
   const card = document.querySelectorAll('.card')
   const recipeDiv = document.createElement('div')
-  // const frontCard = document.createElement('div')
-  // const backCard = document.createElement('div')
-  // import anime from 'animejs';
-  const modal = document.querySelector("#modal");
-  const modalOverlay = document.querySelector("#modal-overlay");
-  const closeButton = document.querySelector("#close-button");
-  const openButton = document.querySelector("#open-button");
+  const modal = document.querySelector("#modal")
+  const modalOverlay = document.querySelector("#modal-overlay")
+  const closeButton = document.querySelector("#close-button")
+  const openButton = document.querySelector("#open-button")
   const form = document.querySelector('#recipe-form')
 
 
@@ -38,11 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
       recipeDiv.className = "card"
       recipeDiv.dataset.id = `${recipe.id}`
      
-      //const frontCard = document.createElement('div')
       frontCard.className = "front"
       recipeDiv.appendChild(frontCard)
 
-      //const backCard = document.createElement('div')
       backCard.className = "back"
       recipeDiv.appendChild(backCard)
 
@@ -51,10 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
       `
 
       const ingredientSplitFunc = () => {
-       // let recIngredients = ""
        let recIngredients = recipe.ingredients
         const stringToArray = recIngredients.split(',')
-        const ul = document.createElement('ul')//
+        const ul = document.createElement('ul')
         ul.innerHTML = `
         <h3>${recipe.name}</h3>
         <h4>Ingredients</h4>
@@ -128,11 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         populateRecipeCards(data.recipes)
       })
   })
-      // }
-      //const switchOnDiet = (e) => {
-      //switch (e.target.value) {
-      //case 'vegetarian':
-        // console.log('veg
+      
     const clickedRecipeDiets = recipeDiets => {
         const recipeDiv = document.querySelector('card')
         const frontCard = document.querySelector('front')
@@ -140,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const testest = recipeDiets.filter(recipeDiet => recipeDiet.diet.name === e.target.value)
         console.log(testest)
         testest.forEach(test => {
-          // if (recipeDiv.innerHTML = ""){
           recipeDiv.innerHTML = 
             `<img src= ${test.recipe.image_url} width="400" height="600">`
           cardContainer.appendChild(frontCard)
@@ -177,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredients: recipeIng,
         instructions: recipeInstuct,
         image_url: recipeImage
-        // likes: 0
       })
     })
     .then(resp => resp.json())
@@ -192,10 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardID = e.target.parentNode.parentNode.parentNode.dataset.id
         fetch(`${recipesUrl}/${cardID}`, {
           method: 'DELETE',
-          // headers: {
-          //   'Content-Type': 'application/json',
-          //   'Accept': 'application/json'
-          // }
         })
           .then(resp => {
             e.target.parentNode.parentNode.parentNode.remove()
